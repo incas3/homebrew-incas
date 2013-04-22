@@ -2,7 +2,7 @@ require 'formula'
 
 class Libsensorpacket < Formula
   homepage 'http://redmine.incas3.nl/projects/universal-logger'
-  head 'git@git.incas3.nl:softwarelibraries/loggingplatform/libsensorpacket.git'
+  head 'https://deploy@git.incas3.nl/softwarelibraries/loggingplatform/libsensorpacket.git'
 
   # depends_on 'cmake' => :build
 
