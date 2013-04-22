@@ -14,10 +14,16 @@ class Aubio < Formula
   depends_on 'swig' => :optional
 
   def install
-    system "./configure", "--disable-debug", "--disable-dependency-tracking",
+    if build.head?
+      system "./waf configure"
+      system "./waf"
+      system "./waf install"
+    else
+      system "./configure", "--disable-debug", "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
-    system "make"
-    ENV.j1
-    system "make install"
+      system "make"
+      ENV.j1
+      system "make install"
+    end
   end
 end
