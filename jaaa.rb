@@ -14,6 +14,8 @@ class Jaaa < Formula
   def install
     # ENV.j1  # if your formula's build system can't parallelize
 
+    inreplace 'Makefile-osx', '/usr/local', "#{prefix}"
+
 #    system "make" # if this fails, try separate make/make install steps
     system "make install"
   end

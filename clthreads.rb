@@ -11,6 +11,8 @@ class Clthreads < Formula
   def install
     # ENV.j1  # if your formula's build system can't parallelize
 
+    inreplace 'Makefile-osx', '/usr/local', "#{prefix}"
+
     system "make -f Makefile-osx" # if this fails, try separate make/make install steps
     system "make -f Makefile-osx install"
   end
