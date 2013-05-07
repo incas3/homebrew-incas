@@ -36,33 +36,6 @@ end
 
 
 __END__
---- jaaa-0.6.0/Makefile  2013-05-07 15:34:18.000000000 +0200
-+++ jaaa-0.6.0-osx/Makefile	2013-05-07 15:34:59.000000000 +0200
-@@ -25,10 +25,10 @@
- VERSION = 0.6.0
- DISTDIR = jaaa-$(VERSION)
- CPPFLAGS += -O2 -Wall -MMD -MP -DVERSION=\"$(VERSION)\" -DPREFIX=\"$(PREFIX)\" -I/usr/include/freetype2
--CPPFLAGS += -march=native
-+CPPFLAGS += -march=native -I/opt/X11/include -I/opt/X11/include/freetype2/ -I/opt/local/include/ -I/usr/local/include
-
--LDFLAGS += -L$(PREFIX)/$(LIBDIR) -L/usr/X11R6/$(LIBDIR)
--LDLIBS += -lclalsadrv -lclthreads -lclxclient -lpthread -lfftw3f -ljack -lasound -lpthread -lXft -lX11 -lrt
-+LDFLAGS += -L$(PREFIX)/$(LIBDIR) -L/usr/X11R6/$(LIBDIR) -L/opt/local/lib
-+LDLIBS += -lclthreads -lclxclient -lpthread -lfftw3f -ljack -lpthread -lXft -lX11
-
-
- JAAA_O = jaaa.o styles.o spectwin.o audio.o rngen.o
-@@ -40,7 +40,8 @@
-
-
- install:	jaaa
--	install -Dm 755 $(DESTDIR)$(PREFIX)/bin/jaaa
-+	install -dm 755 $(DESTDIR)$(PREFIX)/bin
-+	install -m 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
-
- clean:
- 	/bin/rm -f *~ *.o *.a *.d *.so jaaa
-diff -ru jaaa-0.6.0/audio.cc jaaa-0.6.0-osx/audio.cc
 --- jaaa-0.6.0/audio.cc	2010-03-11 21:59:42.000000000 +0100
 +++ jaaa-0.6.0-osx/audio.cc	2012-10-05 13:22:29.000000000 +0200
 @@ -22,6 +22,7 @@
@@ -117,7 +90,6 @@ diff -ru jaaa-0.6.0/audio.cc jaaa-0.6.0-osx/audio.cc
      put_event (EV_EXIT);
  }
 
-Only in jaaa-0.6.0-osx: audio.d
 diff -ru jaaa-0.6.0/audio.h jaaa-0.6.0-osx/audio.h
 --- jaaa-0.6.0/audio.h	2010-03-11 21:59:03.000000000 +0100
 +++ jaaa-0.6.0-osx/audio.h	2012-10-05 13:20:38.000000000 +0200
@@ -142,3 +114,29 @@ diff -ru jaaa-0.6.0/audio.h jaaa-0.6.0-osx/audio.h
 
      volatile bool   _run_jack;
      jack_client_t  *_jack_handle;
+--- jaaa-0.6.0/Makefile	2010-03-10 15:41:39.000000000 +0100
++++ jaaa-0.6.0-osx/Makefile	2013-05-07 15:34:59.000000000 +0200
+@@ -25,10 +25,10 @@
+ VERSION = 0.6.0
+ DISTDIR = jaaa-$(VERSION)
+ CPPFLAGS += -O2 -Wall -MMD -MP -DVERSION=\"$(VERSION)\" -DPREFIX=\"$(PREFIX)\" -I/usr/include/freetype2
+-CPPFLAGS += -march=native
++CPPFLAGS += -march=native -I/opt/X11/include -I/opt/X11/include/freetype2/ -I/opt/local/include/ -I/usr/local/include
+ 
+-LDFLAGS += -L$(PREFIX)/$(LIBDIR) -L/usr/X11R6/$(LIBDIR)
+-LDLIBS += -lclalsadrv -lclthreads -lclxclient -lpthread -lfftw3f -ljack -lasound -lpthread -lXft -lX11 -lrt
++LDFLAGS += -L$(PREFIX)/$(LIBDIR) -L/usr/X11R6/$(LIBDIR) -L/opt/local/lib
++LDLIBS += -lclthreads -lclxclient -lpthread -lfftw3f -ljack -lpthread -lXft -lX11
+ 
+ 
+ JAAA_O = jaaa.o styles.o spectwin.o audio.o rngen.o
+@@ -40,7 +40,8 @@
+ 
+ 
+ install:	jaaa
+-	install -Dm 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
++	install -dm 755 $(DESTDIR)$(PREFIX)/bin
++	install -m 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
+ 
+ clean:
+ 	/bin/rm -f *~ *.o *.a *.d *.so jaaa
