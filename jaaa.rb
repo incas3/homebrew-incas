@@ -56,9 +56,9 @@ __END__
 
 
  install:	jaaa
--	install -Dm 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
-+	install -dm 755 $(DESTDIR)$(PREFIX)/bin/
-+ install -m 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
+-  install -Dm 755 $(DESTDIR)$(PREFIX)/bin/jaaa
++	install -dm 755 $(DESTDIR)$(PREFIX)/bin
++	install -m 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
 
 clean:
  	/bin/rm -f *~ *.o *.a *.d *.so jaaa
