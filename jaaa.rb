@@ -52,14 +52,15 @@ __END__
 
 
  JAAA_O = jaaa.o styles.o spectwin.o audio.o rngen.o
-@@ -40,7 +40,7 @@
+@@ -40,7 +40,8 @@
 
 
  install:	jaaa
 -	install -Dm 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
-+	install -dm 755 jaaa $(DESTDIR)$(PREFIX)/bin/
++	install -dm 755 $(DESTDIR)$(PREFIX)/bin/
++ install -m 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
 
- clean:
+clean:
  	/bin/rm -f *~ *.o *.a *.d *.so jaaa
 diff -ru jaaa-0.6.0/audio.cc jaaa-0.6.0-osx/audio.cc
 --- jaaa-0.6.0/audio.cc	2010-03-11 21:59:42.000000000 +0100
