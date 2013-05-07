@@ -36,8 +36,8 @@ end
 
 
 __END__
---- jaaa-0.6.0/Makefile	2010-03-10 15:41:39.000000000 +0100
-+++ jaaa-0.6.0-osx/Makefile	2012-10-05 13:23:33.000000000 +0200
+--- jaaa-0.6.0/Makefile  2013-05-07 15:34:18.000000000 +0200
++++ jaaa-0.6.0-osx/Makefile	2013-05-07 15:34:59.000000000 +0200
 @@ -25,10 +25,10 @@
  VERSION = 0.6.0
  DISTDIR = jaaa-$(VERSION)
@@ -56,11 +56,11 @@ __END__
 
 
  install:	jaaa
--  install -Dm 755 $(DESTDIR)$(PREFIX)/bin/jaaa
+-	install -Dm 755 $(DESTDIR)$(PREFIX)/bin/jaaa
 +	install -dm 755 $(DESTDIR)$(PREFIX)/bin
 +	install -m 755 jaaa $(DESTDIR)$(PREFIX)/bin/jaaa
 
-clean:
+ clean:
  	/bin/rm -f *~ *.o *.a *.d *.so jaaa
 diff -ru jaaa-0.6.0/audio.cc jaaa-0.6.0-osx/audio.cc
 --- jaaa-0.6.0/audio.cc	2010-03-11 21:59:42.000000000 +0100
