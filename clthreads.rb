@@ -35,6 +35,15 @@ end
 __END__
 --- a/Makefile-osx      2013-05-07 11:48:19.000000000 +0200
 +++ b/Makefile-osx      2013-05-07 11:37:37.000000000 +0200
+@@ -19,7 +19,7 @@
+ # Modify as required.
+ #
+ PREFIX = /usr/local
+-SUFFIX := $(shell uname -m | sed -e 's/^unknown/$//' -e 's/^i.86/$//' -e 's/^x86_64/$/64/')
++#SUFFIX := $(shell uname -m | sed -e 's/^unknown/$//' -e 's/^i.86/$//' -e 's/^x86_64/$/64/')
+ LIBDIR = lib$(SUFFIX)
+
+
 @@ -48,8 +48,9 @@
             -compatibility_version $(MAJVERS) \
             -o $(CLTHREADS_MIN) $(CLTHREADS_O) $(CLTHREAD_DEP) $(LDFLAGS)
