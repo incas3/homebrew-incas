@@ -9,14 +9,14 @@ class Clthreads < Formula
   sha1 'c16da8e4b18455f727aeb11b40ca26be118243a3'
 
   def install
-    # ENV.j1  # if your formula's build system can't parallelize
+    #ENV.j1  # if your formula's build system can't parallelize
 
     inreplace 'Makefile-osx', '/usr/local', "#{prefix}"
-
     system "make -f Makefile-osx" # if this fails, try separate make/make install steps
     system "make -f Makefile-osx install"
+#    include.install "clthreads.h"
   end
-  
+
   def patches
     DATA
   end
@@ -33,12 +33,16 @@ end
 
 
 __END__
---- a/Makefile-osx	2013-05-07 11:48:19.000000000 +0200
-+++ b/Makefile-osx	2013-05-07 11:37:37.000000000 +0200
-@@ -19,7 +19,7 @@
- # Modify as required.
- #
- PREFIX = /usr/local
--SUFFIX := $(shell uname -m | sed -e 's/^unknown/$//' -e 's/^i.86/$//' -e 's/^x86_64/$/64/')
-+#SUFFIX := $(shell uname -m | sed -e 's/^unknown/$//' -e 's/^i.86/$//' -e 's/^x86_64/$/64/')
- LIBDIR = lib$(SUFFIX)
+--- a/Makefile-osx      2013-05-07 11:48:19.000000000 +0200
++++ b/Makefile-osx      2013-05-07 11:37:37.000000000 +0200
+@@ -48,8 +48,9 @@
+            -compatibility_version $(MAJVERS) \
+            -o $(CLTHREADS_MIN) $(CLTHREADS_O) $(CLTHREAD_DEP) $(LDFLAGS)
+
+-install:       $(CLTHREADS_MIN)
++install:       $(CLTHREADS_MIN) $(CLTHREADS_H)
+        /usr/bin/install -d $(PREFIX)/$(LIBDIR)
++       /usr/bin/install -d $(PREFIX)/include
+        /usr/bin/install -m 644 $(CLTHREADS_H) $(PREFIX)/include
+        /usr/bin/install -m 755 $(CLTHREADS_MIN) $(PREFIX)/$(LIBDIR)
+        ln -sf  $(CLTHREADS_MIN) $(PREFIX)/$(LIBDIR)/$(CLTHREADS_MAJ)
