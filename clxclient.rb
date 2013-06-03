@@ -8,7 +8,7 @@ class Clxclient < Formula
   url 'http://kokkinizita.linuxaudio.org/linuxaudio/downloads/clxclient-3.6.1.tar.bz2'
   sha1 'eb4669459be696082adfb5ed7ed6061150fbd802'
 
-  depends_on :clthreads
+  depends_on "clthreads"
   depends_on :x11
 
   def install
