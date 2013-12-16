@@ -20,6 +20,7 @@ class Aubio < Formula
 #      system "./waf"
 #      system "./waf install"
 #    else
+      system "autoreconf"
       system "./configure", "--disable-debug", "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
       system "make"
