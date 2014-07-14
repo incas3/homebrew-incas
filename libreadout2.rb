@@ -7,7 +7,7 @@ class Libreadout2 < Formula
   # depends_on 'cmake' => :build
 
   def install
-    system "autoreconf -a"
+    system "autoreconf -i"
     system "./configure", "--prefix=#{prefix}", "--disable-debug", "--disable-dependency-tracking"
     system "make install"
   end
